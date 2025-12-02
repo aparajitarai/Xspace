@@ -62,16 +62,20 @@ const Navbar = () => {
           <StarIcon />
           <span className="serif-font">XSpace</span>
         </div>
-        
+
         <div className="hidden md:flex items-center gap-8 text-sm font-medium opacity-90">
           <a href="#" className="hover:text-amber-200 transition-colors">Explore Ideas</a>
           <a href="#" className="hover:text-amber-200 transition-colors">Find Professionals</a>
           <a href="#" className="hover:text-amber-200 transition-colors">Ask Experts</a>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          <button className="hidden sm:flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-3 py-2 text-xs font-semibold tracking-wide hover:bg-white/15 transition-colors">
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white text-[#0B1120] font-bold text-[10px]">⏻</span>
+            Call us +1 877 477 9267
+          </button>
           <button className="text-sm font-medium hover:text-amber-200 transition-colors">Sign In</button>
-          <button className="bg-white text-slate-900 px-5 py-2 rounded-full text-sm font-semibold hover:bg-amber-100 transition-colors">
+          <button className="bg-white text-slate-900 px-5 py-2 rounded-full text-sm font-semibold hover:bg-amber-100 transition-colors shadow-lg shadow-black/10">
             Log In
           </button>
         </div>
@@ -97,21 +101,34 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center mt-10">
           {/* Left Content */}
           <div className="space-y-8 text-white max-w-2xl">
-            <h1 className="text-5xl md:text-7xl leading-tight font-light serif-font">
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/10 text-xs font-semibold tracking-wide uppercase px-4 py-2 rounded-full">
+              <span className="h-2 w-2 rounded-full bg-amber-300"></span>
+              Interior design, costs & experts in one place
+            </div>
+            <h1 className="text-5xl md:text-7xl leading-tight font-light serif-font drop-shadow-lg">
               From Vision To Reality, <br/>
               <span className="font-semibold text-amber-100/90">Curated Designs For You</span>
             </h1>
-            <p className="text-lg md:text-xl text-slate-200 font-light leading-relaxed max-w-lg">
+            <p className="text-lg md:text-xl text-slate-200 font-light leading-relaxed max-w-xl">
               Explore curated design ideas, real-time cost estimates, and connect with trusted professionals. All in one seamless experience.
             </p>
-            <button className="bg-[#0B1120] hover:bg-[#1a2542] text-white px-8 py-4 rounded-full text-base font-medium transition-all transform hover:scale-105 border border-slate-700">
-              Explore Designs
-            </button>
+            <div className="flex flex-wrap gap-4 items-center">
+              <button className="bg-gradient-to-r from-[#0B1120] to-[#111b37] hover:from-[#0c1631] hover:to-[#0f213f] text-white px-8 py-4 rounded-full text-base font-medium transition-all transform hover:scale-105 border border-white/10 shadow-xl shadow-black/25">
+                Explore Designs
+              </button>
+              <div className="flex items-center gap-3 text-sm text-slate-200">
+                <div className="h-10 w-10 rounded-full bg-white/15 flex items-center justify-center border border-white/20">★</div>
+                <div className="leading-tight">
+                  <p className="font-semibold">4.9/5</p>
+                  <p className="text-xs text-slate-300">Curated experiences</p>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Right Content - Professional Card */}
           <div className="hidden lg:flex justify-end">
-            <div className="glass-panel p-8 rounded-2xl max-w-sm text-white transform rotate-2 hover:rotate-0 transition-all duration-500">
+            <div className="glass-panel p-8 rounded-2xl max-w-sm text-white transform rotate-2 hover:rotate-0 transition-all duration-500 shadow-2xl shadow-black/40">
               <h3 className="serif-font text-2xl mb-2">Join a Network Built for the Best</h3>
               <p className="text-sm text-slate-200 mb-6 opacity-80">
                 Showcase your work, connect with dreaming clients, and grow your brand with XSpace's curated network.
@@ -120,7 +137,7 @@ const Hero = () => {
                 <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=200&q=80" className="rounded-lg h-24 w-full object-cover opacity-80" alt="Work sample 1" />
                 <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=200&q=80" className="rounded-lg h-24 w-full object-cover opacity-80" alt="Work sample 2" />
               </div>
-              <button className="w-full bg-white text-slate-900 py-3 rounded-xl font-semibold hover:bg-amber-50 transition-colors">
+              <button className="w-full bg-white text-slate-900 py-3 rounded-xl font-semibold hover:bg-amber-50 transition-colors shadow-lg shadow-black/15">
                 Join as Professional
               </button>
             </div>
@@ -173,7 +190,13 @@ const WhyChoose = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 max-w-2xl mx-auto">
           <h2 className="text-4xl serif-font mb-4">Why Choose XSpace</h2>
-          <p className="text-slate-400 font-light">Explore curated designs, real-time cost estimates, and connect with trusted professionals. All in one seamless experience.</p>
+          <p className="text-slate-400 font-light mb-4">Explore curated designs, real-time cost estimates, and connect with trusted professionals. All in one seamless experience.</p>
+          <div className="flex items-center justify-center gap-3 text-amber-200 text-sm">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <span key={i}>★</span>
+            ))}
+            <span className="text-slate-300 font-semibold">We maintain our position and ranking inside these criteria</span>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
