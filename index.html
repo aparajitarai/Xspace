@@ -3,304 +3,452 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Xspace - Interior Design Studio</title>
+  <title>XSpace – Curated Designs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <!-- Neumorphism utility library -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/neumorphism-ui@1.0.1/dist/neumorphism-ui.min.css">
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(180deg, #0f1a2b 0%, #0b1220 45%, #070d17 100%);
+      --navy: #0f1a2b;
+      --navy-2: #0b1220;
+      --navy-3: #10192b;
+      --cream: #f5f1ea;
+      --accent: #86c1ff;
+      --primary: #6ba7ff;
+      --text-light: #e7ecf5;
+      --text-muted: #b8c3d9;
+      --text-dark: #1d2535;
+      --shadow-light: 12px 12px 24px rgba(0, 0, 0, 0.35);
+      --shadow-dark: -12px -12px 24px rgba(255, 255, 255, 0.04);
+      --inset-dark: inset 10px 10px 20px rgba(0, 0, 0, 0.35), inset -10px -10px 20px rgba(255, 255, 255, 0.06);
+      --radius: 18px;
+      --space-xl: 4rem;
+      --space-lg: 2.5rem;
+      --space-md: 1.5rem;
+      --space-sm: 0.75rem;
+      --max-width: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--text-light);
+      background: var(--bg-gradient);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', 'Inter', serif;
+      margin: 0 0 var(--space-sm);
+      color: var(--text-light);
+    }
+
+    p { margin: 0 0 var(--space-sm); color: var(--text-muted); }
+    a { color: inherit; text-decoration: none; }
+
+    img { display: block; width: 100%; height: auto; border-radius: var(--radius); object-fit: cover; }
+
+    /* UTILITY SURFACES */
+    .neo-surface-dark {
+      background: var(--navy-2);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-light), var(--shadow-dark);
+    }
+
+    .neo-surface-light {
+      background: #f7f9fb;
+      border-radius: var(--radius);
+      color: var(--text-dark);
+      box-shadow: 12px 12px 28px rgba(0, 0, 0, 0.08), -12px -12px 24px rgba(255, 255, 255, 0.65);
+    }
+
+    .neo-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      padding: 0.9rem 1.3rem;
+      border-radius: 999px;
+      border: none;
+      color: #0a1321;
+      background: linear-gradient(135deg, #8bc4ff, #5a9bff);
+      box-shadow: var(--shadow-light), var(--shadow-dark);
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .neo-btn-primary:hover { transform: translateY(-2px); box-shadow: 18px 18px 30px rgba(0, 0, 0, 0.4), var(--shadow-dark); }
+
+    .neo-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text-light);
+      background: var(--navy-3);
+      box-shadow: var(--shadow-light), var(--shadow-dark);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .neo-btn-secondary:hover { background: #0d1525; transform: translateY(-2px); }
+
+    .neo-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      background: var(--navy-3);
+      color: var(--text-light);
+      box-shadow: var(--shadow-light), var(--shadow-dark);
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .neo-input {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: #eef2f7;
+      box-shadow: inset 8px 8px 16px rgba(0,0,0,0.08), inset -8px -8px 16px rgba(255,255,255,0.8);
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      outline: none;
+    }
+
+    .container { width: min(95%, var(--max-width)); margin: 0 auto; }
+
+    header { padding: var(--space-lg) 0 var(--space-xl); position: relative; overflow: hidden; }
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 10%, rgba(120,160,255,0.25), transparent 40%),
+                  radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05), transparent 35%);
+      pointer-events: none;
+    }
+
+    /* NAVIGATION */
+    .nav-bar { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(10px); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-radius: var(--radius); }
+    .brand { font-weight: 800; letter-spacing: 0.08em; color: var(--text-light); text-transform: uppercase; }
+    .nav-links { display: flex; gap: 1rem; align-items: center; }
+    .nav-links a { padding: 0.6rem 0.9rem; border-radius: 999px; background: rgba(255,255,255,0.03); color: var(--text-light); border: 1px solid rgba(255,255,255,0.05); box-shadow: var(--shadow-light), var(--shadow-dark); }
+    .nav-right { display: flex; gap: 0.75rem; align-items: center; }
+    .nav-toggle { display: none; width: 44px; height: 44px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); background: var(--navy-3); color: var(--text-light); align-items: center; justify-content: center; box-shadow: var(--shadow-light), var(--shadow-dark); }
+
+    /* HERO */
+    .hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-lg); align-items: center; }
+    .eyebrow { letter-spacing: 0.2em; font-size: 0.8rem; color: var(--accent); font-weight: 700; margin-bottom: var(--space-sm); }
+    .hero h1 { font-size: clamp(2.4rem, 3vw + 1rem, 3.4rem); line-height: 1.15; }
+    .hero p { max-width: 560px; }
+    .hero-buttons { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: var(--space-md); }
+    .hero-chips { display: flex; gap: 0.65rem; flex-wrap: wrap; margin-bottom: var(--space-md); }
+    .hero-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
+    .thumb { height: 72px; border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-light), var(--shadow-dark); }
+    .thumb img { height: 100%; width: 100%; object-fit: cover; }
+
+    .join-card { padding: var(--space-lg); background: var(--navy-3); border: 1px solid rgba(255,255,255,0.05); box-shadow: var(--shadow-light), var(--shadow-dark); border-radius: var(--radius); }
+    .join-card h3 { margin-bottom: 0.5rem; }
+    .join-card p { margin-bottom: var(--space-md); }
+    .join-actions { display: grid; gap: 0.65rem; }
+
+    /* SECTION WRAPPERS */
+    section { padding: var(--space-xl) 0; }
+    .section-header { text-align: center; margin-bottom: var(--space-lg); }
+    .section-header h2 { font-size: clamp(2rem, 2vw + 1rem, 2.8rem); }
+    .section-header p { max-width: 700px; margin: 0 auto; }
+
+    /* WHY CHOOSE */
+    .why { background: var(--navy-2); border-radius: 32px; padding: var(--space-xl) var(--space-lg); box-shadow: var(--shadow-light), var(--shadow-dark); }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-lg); }
+    .why-card { padding: var(--space-md); }
+    .why-card img { height: 140px; object-fit: cover; margin-bottom: var(--space-md); }
+
+    /* EVERYTHING YOU NEED */
+    .everything { position: relative; border-radius: 32px; overflow: hidden; background: #0b1220; }
+    .everything::before {
+      content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,16,28,0.7), rgba(7,12,21,0.9)); z-index: 1;
+    }
+    .everything img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); }
+    .everything .content { position: relative; z-index: 2; padding: var(--space-xl) var(--space-lg); display: grid; gap: var(--space-lg); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); align-items: start; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; margin-top: var(--space-sm); }
+    .gallery-grid img { height: 90px; }
+    .light-card { padding: var(--space-md); }
+    .light-card h3 { color: var(--text-dark); }
+    .light-card p { color: #5b6271; }
+    .light-card .neo-btn-primary { box-shadow: 10px 10px 20px rgba(0,0,0,0.12), -10px -10px 20px rgba(255,255,255,0.8); }
+
+    /* FROM IDEA TO EXECUTION */
+    .idea { background: #eef2f7; color: var(--text-dark); border-radius: 32px; padding: var(--space-xl) var(--space-lg); }
+    .idea h2, .idea p, .idea h3 { color: var(--text-dark); }
+    .steps { display: grid; gap: 1rem; }
+    .step-card { padding: var(--space-md); display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: center; box-shadow: 10px 10px 24px rgba(0,0,0,0.08), -10px -10px 24px rgba(255,255,255,0.7); }
+    .step-number { width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg, #8bc4ff, #5a9bff); color: #0a1321; display: grid; place-items: center; font-weight: 800; }
+    .idea-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-lg); align-items: center; }
+    .idea-image { border-radius: 26px; overflow: hidden; box-shadow: 12px 12px 30px rgba(0,0,0,0.12); }
+
+    /* CTA FORM */
+    .cta { position: relative; overflow: hidden; border-radius: 32px; background: var(--navy-2); }
+    .cta::before { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, rgba(6, 10, 18, 0.9) 40%, rgba(6, 10, 18, 0.6)); z-index: 1; }
+    .cta img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); }
+    .cta .content { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-lg); align-items: center; padding: var(--space-xl) var(--space-lg); }
+    .cta-card { padding: var(--space-lg); }
+    .form-grid { display: grid; gap: var(--space-sm); margin-top: var(--space-md); }
+    .form-grid select { appearance: none; background: #eef2f7; color: var(--text-dark); padding-right: 2.5rem; }
+    .form-submit { margin-top: var(--space-md); }
+
+    /* FOOTER */
+    footer { padding: var(--space-lg) 0; border-top: 1px solid rgba(255,255,255,0.06); color: var(--text-light); }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-lg); align-items: start; }
+    .footer-links a { display: block; margin-bottom: 0.5rem; color: var(--text-muted); }
+    .socials { display: flex; gap: 0.6rem; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); margin-top: var(--space-lg); padding-top: var(--space-md); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; color: var(--text-muted); font-size: 0.9rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-thumbs { grid-template-columns: repeat(2, 1fr); }
+      .nav-links, .nav-right { display: none; }
+      .nav-toggle { display: inline-flex; }
+      .mobile-menu { display: grid; gap: 0.6rem; margin-top: 0.75rem; }
+    }
+
+    @media (max-width: 768px) {
+      header { padding-top: var(--space-lg); }
+      .nav-inner { flex-wrap: wrap; gap: 0.75rem; }
+      .section { padding: var(--space-lg) 0; }
+    }
+  </style>
 </head>
 <body>
-  <div class="page">
-    <header class="hero">
-      <nav class="top-nav neu-card">
-        <div class="brand">Xspace</div>
-        <div class="nav-actions">
-          <button class="btn ghost">View on Instagram</button>
-          <button class="btn primary">Book Consultation</button>
+  <div class="container nav-bar">
+    <nav class="nav-inner neo-surface-dark">
+      <div class="brand">XSpace</div>
+      <div class="nav-links" id="navLinks">
+        <a href="#">Explore Ideas</a>
+        <a href="#">Find Professionals</a>
+        <a href="#">Ask Experts</a>
+        <a href="#">Sign In</a>
+      </div>
+      <div class="nav-right" id="navRight">
+        <a class="neo-btn-secondary" href="#">Sign In</a>
+        <a class="neo-btn-primary" href="#">Get Started</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu" style="display:none;">
+      <a class="neo-chip" href="#">Explore Ideas</a>
+      <a class="neo-chip" href="#">Find Professionals</a>
+      <a class="neo-chip" href="#">Ask Experts</a>
+      <a class="neo-chip" href="#">Sign In</a>
+      <a class="neo-btn-primary" href="#">Get Started</a>
+    </div>
+  </div>
+
+  <main>
+    <header class="container hero">
+      <div>
+        <div class="eyebrow">INTERIOR DESIGN, REIMAGINED</div>
+        <h1>From Vision To Reality, Curated Designs For You</h1>
+        <p>Design everything from the floor plan to the finishing touches with our curated design packages tailored to your lifestyle.</p>
+        <div class="hero-buttons">
+          <button class="neo-btn-primary">Explore Ideas</button>
+          <button class="neo-btn-secondary">Get Started</button>
         </div>
-      </nav>
-      <div class="hero-content">
-        <div class="hero-text">
-          <div class="badge">Book your free consultation today</div>
-          <h1>From Vision To Reality, Curated Designs For You</h1>
-          <p>
-            Design everything from the floor plan to the finishing touches with
-            our curated design packages tailored to your lifestyle.
-          </p>
-          <div class="hero-actions">
-            <button class="btn primary">View our work</button>
-            <button class="btn ghost">Contact us</button>
-          </div>
-          <div class="hero-meta">
-            <div class="meta-item">
-              <span class="meta-icon">⏱️</span>
-              <div>
-                <p class="meta-title">Save Design Time</p>
-                <p class="meta-copy">Get coordinated layouts in days not weeks.</p>
-              </div>
-            </div>
-            <div class="meta-item">
-              <span class="meta-icon">🛠️</span>
-              <div>
-                <p class="meta-title">Better Execution</p>
-                <p class="meta-copy">From plan to punch-list, stay aligned.</p>
-              </div>
-            </div>
-          </div>
+        <div class="hero-chips">
+          <span class="neo-chip">Explore Ideas</span>
+          <span class="neo-chip">Find Professionals</span>
+          <span class="neo-chip">Ask Experts</span>
         </div>
-        <div class="hero-gallery">
-          <div class="gallery-grid">
-            <div class="gallery-card neu-card highlight">
-              <div class="gallery-thumb wood"></div>
-              <div class="gallery-info">
-                <p class="label">Transform your space with expert guidance</p>
-                <p class="subtitle">Focus on what matters, leave the rest to us</p>
-              </div>
-            </div>
-            <div class="gallery-card neu-card">
-              <div class="gallery-thumb color-block"></div>
-              <div class="gallery-info">
-                <p class="label">Bedroom</p>
-                <p class="subtitle">Never miss an appointment</p>
-              </div>
-            </div>
-            <div class="gallery-card neu-card">
-              <div class="gallery-thumb living"></div>
-              <div class="gallery-info">
-                <p class="label">Livingspace</p>
-                <p class="subtitle">Never miss an appointment</p>
-              </div>
-            </div>
-            <div class="gallery-card neu-card">
-              <div class="gallery-thumb reading"></div>
-              <div class="gallery-info">
-                <p class="label">Study</p>
-                <p class="subtitle">Always be on time</p>
-              </div>
-            </div>
-          </div>
+        <div class="hero-thumbs">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=400&q=80" alt="Interior 1"></div>
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=400&q=80" alt="Interior 2"></div>
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=400&q=80" alt="Interior 3"></div>
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=400&q=80" alt="Interior 4"></div>
+        </div>
+      </div>
+      <div class="join-card">
+        <h3>Join a Network Built for the Best</h3>
+        <p>Connect with trusted professionals, showcase your expertise, or get paired with experts who align with your vision.</p>
+        <div class="join-actions">
+          <button class="neo-btn-primary">Join as Professional</button>
+          <button class="neo-btn-secondary">Join as Homeowner</button>
         </div>
       </div>
     </header>
 
-    <main>
-      <section class="section intro">
-        <div class="section-header">
-          <div>
-            <div class="eyebrow">Made for design enthusiasts</div>
-            <h2>Why Choose Xspace?</h2>
-          </div>
-          <p class="lead">Discover how our custom interiors can transform your space.</p>
-        </div>
-        <div class="card-grid three">
-          <article class="info-card neu-card">
-            <div class="card-top">
-              <div class="card-icon">1</div>
-              <div class="dots"></div>
-            </div>
-            <h3>Full Design Planning</h3>
-            <p>Complete floor plans, mood boards, lighting layouts, furniture selection, and custom details for every room.</p>
-          </article>
-          <article class="info-card neu-card">
-            <div class="card-top">
-              <div class="card-icon">2</div>
-              <div class="dots"></div>
-            </div>
-            <h3>Project Overview</h3>
-            <p>A holistic view of your design journey with clear milestones, budgets, and deliverables.</p>
-          </article>
-          <article class="info-card neu-card">
-            <div class="card-top">
-              <div class="card-icon">3</div>
-              <div class="dots"></div>
-            </div>
-            <h3>Design Elements in Place</h3>
-            <p>Curated palettes, tactile samples, and shoppable lists so you can see and feel the design before execution.</p>
-          </article>
-        </div>
-      </section>
+    <section class="container why">
+      <div class="section-header">
+        <h2>Why Choose XSpace</h2>
+        <p>Discover how our custom interiors can transform your space.</p>
+      </div>
+      <div class="why-grid">
+        <article class="why-card neo-surface-dark">
+          <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80" alt="Real Designs">
+          <h3>Real Designs, Real Costs</h3>
+          <p>See authentic designs paired with transparent budgets so you know exactly what it takes to build your dream space.</p>
+        </article>
+        <article class="why-card neo-surface-dark">
+          <img src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=600&q=80" alt="Professionals">
+          <h3>Trusted Professionals</h3>
+          <p>Work with vetted designers and contractors who bring craftsmanship, reliability, and creativity to every project.</p>
+        </article>
+        <article class="why-card neo-surface-dark">
+          <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=600&q=80" alt="One Hub">
+          <h3>One Hub, Start to Finish</h3>
+          <p>Track inspiration, plans, and execution in one place so every decision stays aligned from concept through completion.</p>
+        </article>
+      </div>
+    </section>
 
-      <section class="section features">
-        <div class="section-header">
-          <div>
-            <div class="eyebrow">Design your spaces</div>
-            <h2>Everything You Need In One Place</h2>
+    <section class="container everything">
+      <img class="bg" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1400&q=80" alt="Interior background">
+      <div class="content">
+        <div class="section-header" style="text-align:left;">
+          <h2>Everything You Need To Design Your Space</h2>
+          <p>Inspiration, expert guidance, and project-ready resources come together so you can move from dreaming to doing.</p>
+        </div>
+        <div class="light-card neo-surface-light">
+          <h3>Explore Designs</h3>
+          <p>Browse curated looks tailored to modern living, complete with layouts, palettes, and shopping lists.</p>
+          <button class="neo-btn-primary">Discover</button>
+          <div class="gallery-grid">
+            <img src="https://images.unsplash.com/photo-1484156818044-c040038b0710?auto=format&fit=crop&w=400&q=80" alt="gallery">
+            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=400&q=80" alt="gallery">
+            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=400&q=80" alt="gallery">
+            <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=400&q=80" alt="gallery">
           </div>
-          <a class="inline-link" href="#">Book a consultation →</a>
         </div>
-        <div class="card-grid four">
-          <article class="feature-card neu-card">
-            <div class="feature-thumb sample-1"></div>
-            <div class="feature-body">
-              <div class="tag">Books to be curated</div>
-              <h3>Book your first consultation</h3>
-              <a href="#" class="inline-link">Consultation →</a>
-            </div>
-          </article>
-          <article class="feature-card neu-card">
-            <div class="feature-thumb sample-2"></div>
-            <div class="feature-body">
-              <div class="tag">Chosen design ideas</div>
-              <h3>Review the plans</h3>
-              <a href="#" class="inline-link">View plans →</a>
-            </div>
-          </article>
-          <article class="feature-card neu-card">
-            <div class="feature-thumb sample-3"></div>
-            <div class="feature-body">
-              <div class="tag">Reference image</div>
-              <h3>Approve concepts</h3>
-              <a href="#" class="inline-link">Learn more →</a>
-            </div>
-          </article>
-          <article class="feature-card neu-card">
-            <div class="feature-thumb sample-4"></div>
-            <div class="feature-body">
-              <div class="tag">Curated materials</div>
-              <h3>Explore tactile samples</h3>
-              <a href="#" class="inline-link">Learn more →</a>
-            </div>
-          </article>
+        <div class="stack" style="display:grid; gap: var(--space-md);">
+          <div class="light-card neo-surface-light">
+            <h3>Find Professionals</h3>
+            <p>Get matched with designers and builders who specialize in the look and lifestyle you want.</p>
+            <button class="neo-btn-primary">Find Now</button>
+          </div>
+          <div class="light-card neo-surface-light">
+            <h3>Get Expert Advice</h3>
+            <p>Ask seasoned experts for guidance on finishes, layouts, and budgets before you commit.</p>
+            <button class="neo-btn-primary">Ask Experts</button>
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section timeline">
-        <div class="section-header">
-          <div>
-            <div class="eyebrow">360° interior design</div>
+    <section class="container idea">
+      <div class="idea-grid">
+        <div>
+          <div class="section-header" style="text-align:left; margin-bottom: var(--space-md);">
             <h2>From Idea to Execution</h2>
+            <p>Discover how we transform your vision into reality.</p>
           </div>
-          <p class="lead">Discover how we transform your vision into reality.</p>
-        </div>
-        <div class="timeline-grid">
-          <div class="timeline-steps">
-            <div class="step neu-card">
+          <div class="steps">
+            <div class="step-card neo-surface-light">
               <div class="step-number">1</div>
               <div>
-                <h3>Book your first consultation</h3>
-                <p>Meet our designers to discuss your style, needs, and aspirations.</p>
+                <h3>Discover</h3>
+                <p>Book your first consultation to align on your style, needs, and aspirations.</p>
               </div>
-              <a href="#" class="inline-link">Consultation →</a>
             </div>
-            <div class="step neu-card">
+            <div class="step-card neo-surface-light">
               <div class="step-number">2</div>
               <div>
-                <h3>Review the plan</h3>
-                <p>We share coordinated layouts, palettes, and renders so you can visualize every room.</p>
+                <h3>Plan</h3>
+                <p>Review coordinated layouts, palettes, and renders so you can visualize every room.</p>
               </div>
-              <a href="#" class="inline-link">View plans →</a>
             </div>
-            <div class="step neu-card">
+            <div class="step-card neo-surface-light">
               <div class="step-number">3</div>
               <div>
-                <h3>Inspect tactile samples</h3>
-                <p>Feel curated materials from countertops to textiles to confirm your selections.</p>
+                <h3>Execute</h3>
+                <p>Get contractor-ready guidance with detailed drawings, shopping lists, and schedules.</p>
               </div>
-              <a href="#" class="inline-link">Learn more →</a>
-            </div>
-            <div class="step neu-card">
-              <div class="step-number">4</div>
-              <div>
-                <h3>Get a bespoke execution manual</h3>
-                <p>Receive detailed drawings, shopping lists, and contractor-ready guidance.</p>
-              </div>
-              <a href="#" class="inline-link">Learn more →</a>
-            </div>
-          </div>
-          <div class="timeline-visual neu-card">
-            <div class="visual-image moodboard"></div>
-            <div class="visual-badge">
-              <p>Never miss an appointment</p>
-              <small>Every detail scheduled and tracked.</small>
             </div>
           </div>
         </div>
-      </section>
+        <div class="idea-image">
+          <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1200&q=80" alt="Dining space">
+        </div>
+      </div>
+    </section>
 
-      <section class="section cta">
-        <div class="cta-content">
-          <div>
-            <p class="eyebrow">Confirm your budget and project timeline</p>
-            <h2>Ready To Start Building With Us?</h2>
-            <p class="lead">From concept to completion, we provide everything you need for a seamless interior makeover.</p>
-            <div class="hero-actions">
-              <button class="btn primary">Book Consultation</button>
-              <button class="btn ghost">View Plans</button>
-            </div>
-          </div>
-          <div class="cta-card neu-card">
-            <div class="cta-body">
-              <p class="label">Xspace design studio</p>
-              <div class="cta-avatar">
-                <div class="avatar-circle">JQ</div>
-                <div>
-                  <p class="meta-title">Jasleen Kaur</p>
-                  <p class="meta-copy">Lead Interior Designer</p>
-                </div>
-              </div>
-              <h3>Book a virtual interior design consultation today</h3>
-              <button class="btn primary full">Book Consultation</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section stats">
-        <div class="stat-card neu-card">
-          <p class="stat-value">250+</p>
-          <p class="stat-label">Spaces designed</p>
-        </div>
-        <div class="stat-card neu-card">
-          <p class="stat-value">500</p>
-          <p class="stat-label">Clients served</p>
-        </div>
-        <div class="stat-card neu-card">
-          <p class="stat-value">950+</p>
-          <p class="stat-label">Projects completed</p>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-content">
+    <section class="container cta">
+      <img class="bg" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1400&q=80" alt="Living room">
+      <div class="content">
         <div>
-          <div class="brand">Xspace</div>
-          <p class="footer-copy">Bring your spaces to life with curated interiors, precise planning, and seamless execution.</p>
+          <div class="eyebrow">Begin Your Design Journey Today</div>
+          <h2 style="margin-bottom: var(--space-sm);">Ready To Start Building With Us?</h2>
+          <p>From concept to completion, we provide everything you need for a seamless interior makeover.</p>
         </div>
-        <div class="footer-actions">
-          <div class="newsletter neu-card">
-            <p class="meta-title">Get updates</p>
-            <div class="newsletter-form">
-              <input type="email" placeholder="Type your email" />
-              <button class="btn primary">Subscribe</button>
+        <div class="cta-card neo-surface-light">
+          <h3>Get in Touch</h3>
+          <p>Share your project details and we'll pair you with the right experts.</p>
+          <form class="form-grid">
+            <input class="neo-input" type="text" placeholder="Name" required>
+            <input class="neo-input" type="email" placeholder="Email" required>
+            <input class="neo-input" type="text" placeholder="City" required>
+            <select class="neo-input" required>
+              <option value="">Project Type</option>
+              <option>2BHK Home</option>
+              <option>3BHK Home</option>
+              <option>Villa</option>
+              <option>Commercial Space</option>
+            </select>
+            <div class="form-submit">
+              <button type="submit" class="neo-btn-primary" style="width:100%;">Get In Touch</button>
             </div>
-          </div>
-          <div class="footer-links">
-            <div>
-              <p class="meta-title">Support</p>
-              <a href="#">FAQ</a>
-              <a href="#">Contact us</a>
-              <a href="#">Community</a>
-            </div>
-            <div>
-              <p class="meta-title">Legal</p>
-              <a href="#">Privacy policy</a>
-              <a href="#">Terms of service</a>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>Copyright © 2023 Xspace</p>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand">XSpace</div>
+        <p>Bring your spaces to life with curated interiors, precise planning, and seamless execution.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <div class="footer-links">
+          <a href="#">Explore Ideas</a>
+          <a href="#">Find Professionals</a>
+          <a href="#">Ask Experts</a>
+        </div>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <p>Koramangala, Bangalore, Karnataka</p>
         <div class="socials">
-          <a href="#" aria-label="Instagram">Instagram</a>
-          <a href="#" aria-label="Twitter">Twitter</a>
-          <a href="#" aria-label="Facebook">Facebook</a>
+          <span>⧉</span><span>⧉</span><span>⧉</span>
         </div>
       </div>
-    </footer>
-  </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 XSpace. All rights reserved.</span>
+      <div class="socials">
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    navToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.style.display === 'grid';
+      mobileMenu.style.display = isOpen ? 'none' : 'grid';
+    });
+  </script>
 </body>
 </html>
