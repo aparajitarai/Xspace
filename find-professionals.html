@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Professionals - Trusted Builders Ltd</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Hide scrollbar for clean carousel */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Custom color for the tags based on screenshot */
+        .tag-dusty-rose {
+            background-color: #d89898; 
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-slate-800 h-screen overflow-hidden relative">
+
+    <!-- BACKGROUND PAGE (Context: "Find Professionals" Listing) -->
+    <!-- This section simulates the page behind the modal to provide context -->
+    <div class="h-full overflow-y-auto p-4 md:p-8 filter blur-sm transition-all duration-300" id="main-content">
+        <header class="max-w-7xl mx-auto mb-8 flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-slate-900">Find Professionals</h1>
+            <div class="flex gap-4">
+                <input type="text" placeholder="Search designers..." class="px-4 py-2 border rounded-lg shadow-sm">
+                <button class="bg-slate-900 text-white px-4 py-2 rounded-lg">Filter</button>
+            </div>
+        </header>
+
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Mock Card 1 -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col items-center text-center">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-20 h-20 rounded-full mb-4" alt="Trusted Builders Ltd portrait">
+                <h3 class="font-bold text-lg">Trusted Builders Ltd</h3>
+                <p class="text-gray-500 text-sm mb-4">Interior Design & Architecture</p>
+                <button class="bg-indigo-600 text-white px-6 py-2 rounded-full text-sm font-medium">View Profile</button>
+            </div>
+            <!-- Mock Card 2 -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col items-center text-center">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-20 h-20 rounded-full mb-4" alt="Elena Design Studio portrait">
+                <h3 class="font-bold text-lg">Elena Design Studio</h3>
+                <p class="text-gray-500 text-sm mb-4">Sustainable Living Spaces</p>
+                <button class="bg-indigo-600 text-white px-6 py-2 rounded-full text-sm font-medium">View Profile</button>
+            </div>
+            <!-- Mock Card 3 -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col items-center text-center">
+                <img src="https://randomuser.me/api/portraits/men/85.jpg" class="w-20 h-20 rounded-full mb-4" alt="Modern & Co portrait">
+                <h3 class="font-bold text-lg">Modern & Co.</h3>
+                <p class="text-gray-500 text-sm mb-4">Commercial Architecture</p>
+                <button class="bg-indigo-600 text-white px-6 py-2 rounded-full text-sm font-medium">View Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL OVERLAY -->
+    <!-- This is the core component requested from the image -->
+    <div id="modal-overlay" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 opacity-100 transition-opacity duration-300">
+        
+        <!-- MODAL CARD -->
+        <div class="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl relative flex flex-col">
+            
+            <!-- Close Button (Absolute on the banner) -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-10 bg-white/20 hover:bg-white/40 backdrop-blur-md text-white w-8 h-8 rounded-full flex items-center justify-center transition-colors" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- Banner Image -->
+            <div class="h-48 md:h-64 w-full bg-gray-200 relative">
+                <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?q=80&w=1000&auto=format&fit=crop" 
+                     alt="Interior Banner" 
+                     class="w-full h-full object-cover">
+            </div>
+
+            <!-- Content Container -->
+            <div class="px-6 md:px-10 pb-10">
+                
+                <!-- Profile Header Row -->
+                <div class="flex flex-col md:flex-row items-start md:items-end -mt-10 mb-6 gap-4 md:gap-6">
+                    <!-- Avatar -->
+                    <div class="flex-shrink-0">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" 
+                             class="w-24 h-24 rounded-full border-4 border-white shadow-md bg-white object-cover" alt="Trusted Builders Ltd logo">
+                    </div>
+
+                    <!-- Name & Buttons Layout -->
+                    <div class="flex-grow w-full md:w-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                        
+                        <!-- Name & Tags -->
+                        <div>
+                            <h2 class="text-2xl font-bold text-slate-900 mb-2">Trusted Builders Ltd</h2>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tag-dusty-rose px-3 py-1 rounded-md text-xs font-medium">Environment</span>
+                                <span class="tag-dusty-rose px-3 py-1 rounded-md text-xs font-medium">Furniture and people</span>
+                                <span class="tag-dusty-rose px-3 py-1 rounded-md text-xs font-medium">Texturing & lighting</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex gap-2">
+                            <button class="border border-slate-300 text-slate-700 px-4 py-1.5 rounded-full text-sm font-medium hover:bg-slate-50 transition-colors flex items-center gap-2">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                            <button class="border border-slate-300 text-slate-700 px-4 py-1.5 rounded-full text-sm font-medium hover:bg-slate-50 transition-colors flex items-center gap-2">
+                                <i class="far fa-envelope"></i> Mail
+                            </button>
+                            <button class="bg-[#1a1a2e] text-white px-5 py-1.5 rounded-full text-sm font-medium hover:bg-slate-800 transition-colors flex items-center gap-2">
+                                <i class="fas fa-phone-alt text-xs"></i> Contact
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <p class="text-slate-500 text-sm leading-relaxed mb-8 max-w-3xl">
+                    We bring your vision to life with high-quality 3D interior designs. Whether its a single room, a complete makeover, or designs for residential or commercial spaces, we craft each project with care, creativity, and expert precision.
+                </p>
+
+                <!-- Projects Section -->
+                <div class="border-t border-gray-100 pt-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold text-slate-900">Projects</h3>
+                        <!-- Navigation Arrows -->
+                        <div class="flex gap-2">
+                            <button onclick="scrollProjects('left')" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 text-gray-500" aria-label="Previous projects">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button onclick="scrollProjects('right')" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 text-gray-500" aria-label="Next projects">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Carousel Container -->
+                    <div class="relative group">
+                        <!-- Scrollable Area -->
+                        <div id="projects-carousel" class="flex gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4">
+                            
+                            <!-- Project Card 1 -->
+                            <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-xl overflow-hidden cursor-pointer group hover:shadow-lg transition-shadow duration-300">
+                                <div class="h-48 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=1000&auto=format&fit=crop" 
+                                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="90's Style Bedroom Aesthetic">
+                                </div>
+                                <div class="p-3">
+                                    <h4 class="font-bold text-slate-800 text-sm mb-1">90's Style Bedroom Aesthetic</h4>
+                                    <div class="flex gap-4 text-xs text-slate-400">
+                                        <span>2BHK</span>
+                                        <span>1500 Sq Ft</span>
+                                        <span>Rs 50 L</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Project Card 2 -->
+                            <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-xl overflow-hidden cursor-pointer group hover:shadow-lg transition-shadow duration-300">
+                                <div class="h-48 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?q=80&w=1000&auto=format&fit=crop" 
+                                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Modern Ocean View Dining">
+                                </div>
+                                <div class="p-3">
+                                    <h4 class="font-bold text-slate-800 text-sm mb-1">Modern Ocean View Dining</h4>
+                                    <div class="flex gap-4 text-xs text-slate-400">
+                                        <span>3BHK</span>
+                                        <span>2200 Sq Ft</span>
+                                        <span>Rs 75 L</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Project Card 3 -->
+                            <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-xl overflow-hidden cursor-pointer group hover:shadow-lg transition-shadow duration-300">
+                                <div class="h-48 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1000&auto=format&fit=crop" 
+                                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Industrial Living Space">
+                                </div>
+                                <div class="p-3">
+                                    <h4 class="font-bold text-slate-800 text-sm mb-1">Industrial Living Space</h4>
+                                    <div class="flex gap-4 text-xs text-slate-400">
+                                        <span>Loft</span>
+                                        <span>1200 Sq Ft</span>
+                                        <span>Rs 45 L</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                             <!-- Project Card 4 (Hidden offscreen usually) -->
+                             <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-xl overflow-hidden cursor-pointer group hover:shadow-lg transition-shadow duration-300">
+                                <div class="h-48 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop" 
+                                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Minimalist Studio">
+                                </div>
+                                <div class="p-3">
+                                    <h4 class="font-bold text-slate-800 text-sm mb-1">Minimalist Studio</h4>
+                                    <div class="flex gap-4 text-xs text-slate-400">
+                                        <span>1BHK</span>
+                                        <span>800 Sq Ft</span>
+                                        <span>Rs 25 L</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <!-- Side Fade Effect -->
+                        <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none md:hidden"></div>
+                    </div>
+
+                    <!-- Bottom Text matching image -->
+                    <div class="mt-4 flex justify-between text-xs text-slate-400 border-t border-gray-50 pt-3">
+                        <span>Projects starting from ₹5L</span>
+                        <span>Projects starting from ₹5L</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal State Logic
+        const modal = document.getElementById('modal-overlay');
+        const mainContent = document.getElementById('main-content');
+
+        function closeModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            // Remove blur from background
+            mainContent.classList.remove('blur-sm');
+        }
+
+        function openModal() {
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            // Add blur to background
+            mainContent.classList.add('blur-sm');
+        }
+
+        // Attach openModal to all buttons on the background
+        document.querySelectorAll('button').forEach(btn => {
+            if(btn.innerText === "View Profile") {
+                btn.addEventListener('click', openModal);
+            }
+        });
+
+        // Carousel Scroll Logic
+        function scrollProjects(direction) {
+            const container = document.getElementById('projects-carousel');
+            const scrollAmount = 340; // Card width + gap
+            
+            if (direction === 'left') {
+                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }
+
+        // Initialize state (Open by default to match screenshot request)
+        // setTimeout(() => openModal(), 100); 
+        // Actually, let's keep it open initially since the user asked for code "for this image"
+    </script>
+</body>
+</html>
