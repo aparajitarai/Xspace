@@ -55,6 +55,30 @@ const professionalsData = [
       "https://images.unsplash.com/photo-1505692069463-3b454af1c602?auto=format&fit=crop&w=800&q=80",
     ],
   },
+  {
+    name: "Urban Nest Studios",
+    startingPrice: "Projects starting from ₹5L",
+    description:
+      "Contemporary interiors featuring layered textures, thoughtful lighting, and custom-built storage for elevated city living.",
+    services: ["Interior design", "Lighting plans", "Custom storage", "+2"],
+    imageUrls: [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80",
+    ],
+  },
+  {
+    name: "Haven Makers Collective",
+    startingPrice: "Projects starting from ₹5L",
+    description:
+      "Holistic design-build team crafting tranquil retreats with sustainable materials, mindful layouts, and artisan finishes.",
+    services: ["Sustainable design", "Construction", "Bespoke furniture", "+2"],
+    imageUrls: [
+      "https://images.unsplash.com/photo-1505692069463-3b454af1c602?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
+    ],
+  },
 ];
 
 const ArrowIcon = ({ direction = "left", className = "" }) => (
@@ -192,7 +216,7 @@ export default function FindProfessionalsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#ffe8de] to-[#ffd3cf] text-slate-800">
+    <div className="min-h-screen bg-gradient-to-b from-[#ffe8de] via-[#ffdcd4] to-[#ffd0c8] text-slate-800 font-sans">
       <header className="sticky top-0 z-20 bg-[#050b2a] text-white shadow-lg">
         <div className="max-w-screen-xl mx-auto px-6 lg:px-12 flex items-center justify-between h-16">
           <div className="flex items-center gap-3 font-semibold tracking-wide">
@@ -239,7 +263,7 @@ export default function FindProfessionalsPage() {
           </div>
         </section>
 
-        <section className="bg-white rounded-[28px] shadow-2xl p-6 md:p-10 space-y-8">
+        <section className="bg-white rounded-[28px] shadow-2xl p-6 md:p-10 space-y-8 border border-slate-100">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <h2 className="text-2xl lg:text-3xl font-serif text-[#050b2a] tracking-wide">
               Discover Trusted Professionals
