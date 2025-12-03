@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Explore Ideas | Curated Inspiration</title>
+   <script src="https://cdn.tailwindcss.com"></script>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+   <script>
+       tailwind.config = {
+           theme: {
+               extend: {
+                   colors: {
+                       cream: '#FDFCF8',
+                       stone: '#F4F1EA',
+                       charcoal: '#2D3748',
+                       terracotta: '#C05621',
+                       'terracotta-dark': '#9C4221',
+                   },
+                   fontFamily: {
+                       sans: ['Inter', 'sans-serif'],
+                       serif: ['Playfair Display', 'serif'],
+                   },
+                   boxShadow: {
+                       'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                       'hover': '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                   }
+               }
+           }
+       }
+   </script>
+   <style>
+       body { background-color: #FDFCF8; }
+      
+       /* Masonry Layout */
+       .masonry-grid {
+           column-count: 1;
+           column-gap: 1.5rem;
+       }
+       @media (min-width: 640px) { .masonry-grid { column-count: 2; } }
+       @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+       @media (min-width: 1280px) { .masonry-grid { column-count: 4; } }
+      
+       .masonry-item {
+           break-inside: avoid;
+           margin-bottom: 1.5rem;
+           transform: translateZ(0); /* Fix for webkit repainting */
+       }
+
+
+       /* Hide Scrollbar */
+       .no-scrollbar::-webkit-scrollbar { display: none; }
+       .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+
+       /* Animations */
+       .fade-in { animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(20px); }
+       @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+
+       /* Save Button Animation */
+       .group:hover .save-btn { opacity: 1; transform: translateY(0); }
+       .save-btn { transition: all 0.2s ease; opacity: 0; transform: translateY(-10px); }
+
+
+       /* Lightbox */
+       #lightbox { transition: opacity 0.3s ease; }
+       #lightbox.hidden { opacity: 0; pointer-events: none; }
+       #lightbox:not(.hidden) { opacity: 1; pointer-events: auto; }
+   </style>
+</head>
+<body class="text-charcoal antialiased selection:bg-terracotta selection:text-white">
+
+
+   <!-- Sticky Header with Blur -->
+   <nav class="sticky top-0 z-40 bg-cream/80 backdrop-blur-lg border-b border-stone-200 transition-all duration-300" id="navbar">
+       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <div class="flex justify-between items-center h-20">
+               <!-- Logo -->
+               <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer group" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                   <div class="w-9 h-9 bg-terracotta group-hover:bg-terracotta-dark transition-colors rounded-full flex items-center justify-center text-white font-serif font-bold italic text-lg shadow-md">E</div>
+                   <span class="font-serif text-2xl font-bold tracking-tight text-gray-900">Explore.</span>
+               </div>
+
+
+               <!-- Desktop Nav -->
+               <div class="hidden md:flex space-x-1 items-center">
+                   <a href="#" class="px-4 py-2 text-sm font-medium text-gray-900 bg-stone-100 rounded-full">Home</a>
+                   <a href="#" class="px-4 py-2 text-sm font-medium text-gray-500 hover:text-terracotta hover:bg-white rounded-full transition-all">Today</a>
+                   <a href="#" class="px-4 py-2 text-sm font-medium text-gray-500 hover:text-terracotta hover:bg-white rounded-full transition-all">Following</a>
+               </div>
+
+
+               <!-- Actions -->
+               <div class="flex items-center gap-4">
+                   <button class="text-gray-400 hover:text-gray-900 transition-colors p-2">
+                       <span class="sr-only">Notifications</span>
+                       <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                       </svg>
+                   </button>
+                   <div class="w-px h-6 bg-gray-300 hidden md:block"></div>
+                   <button class="hidden md:block px-6 py-2.5 rounded-full bg-charcoal text-white text-sm font-medium hover:bg-black hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                       Submit Work
+                   </button>
+               </div>
+           </div>
+       </div>
+   </nav>
+
+
+   <!-- Hero Section -->
+   <div class="relative pt-12 pb-10 sm:pt-20 sm:pb-16 px-4">
+       <div class="text-center max-w-4xl mx-auto">
+           <h1 class="text-5xl md:text-7xl font-serif font-medium text-gray-900 mb-6 tracking-tight leading-tight">
+               Curating the <br class="hidden sm:block" /><span class="italic text-terracotta relative inline-block">
+                   extraordinary
+                   <svg class="absolute w-full h-3 -bottom-1 left-0 text-terracotta/20" viewBox="0 0 100 10" preserveAspectRatio="none">
+                       <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="8" fill="none" />
+                   </svg>
+               </span>.
+           </h1>
+           <p class="text-lg text-gray-500 mb-10 max-w-xl mx-auto font-light leading-relaxed">
+               A visual discovery engine for the creative mind. Find inspiration in architecture, design, and photography.
+           </p>
+
+
+           <!-- Search Bar -->
+           <div class="relative max-w-2xl mx-auto group z-20">
+               <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                   <svg class="h-5 w-5 text-gray-400 group-focus-within:text-terracotta transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                   </svg>
+               </div>
+               <input type="text"
+                      id="searchInput"
+                      class="block w-full pl-14 pr-32 py-4 rounded-full border-2 border-stone-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:border-terracotta focus:ring-4 focus:ring-terracotta/10 shadow-soft hover:shadow-lg transition-all text-lg"
+                      placeholder="Search for 'minimalist'...">
+               <div class="absolute right-2 top-2 bottom-2">
+                   <button class="h-full bg-stone-100 hover:bg-terracotta hover:text-white text-gray-600 px-6 rounded-full font-medium text-sm transition-colors">
+                       Search
+                   </button>
+               </div>
+           </div>
+
+
+           <!-- Categories / Filter Pills -->
+           <div class="mt-10 flex justify-center gap-2 flex-wrap" id="filters">
+               <button data-filter="all" class="filter-btn active px-6 py-2.5 rounded-full bg-charcoal text-white text-sm font-medium transition-all shadow-md transform hover:scale-105">All</button>
+               <button data-filter="architecture" class="filter-btn px-6 py-2.5 rounded-full bg-white border border-stone-200 text-gray-600 text-sm font-medium hover:border-terracotta hover:text-terracotta transition-all hover:shadow-md">Architecture</button>
+               <button data-filter="design" class="filter-btn px-6 py-2.5 rounded-full bg-white border border-stone-200 text-gray-600 text-sm font-medium hover:border-terracotta hover:text-terracotta transition-all hover:shadow-md">Design</button>
+               <button data-filter="photography" class="filter-btn px-6 py-2.5 rounded-full bg-white border border-stone-200 text-gray-600 text-sm font-medium hover:border-terracotta hover:text-terracotta transition-all hover:shadow-md">Photography</button>
+               <button data-filter="typography" class="filter-btn px-6 py-2.5 rounded-full bg-white border border-stone-200 text-gray-600 text-sm font-medium hover:border-terracotta hover:text-terracotta transition-all hover:shadow-md">Typography</button>
+           </div>
+       </div>
+   </div>
+
+
+   <!-- Masonry Grid -->
+   <main class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+       <div class="masonry-grid" id="grid-container">
+           <!-- Items injected via JS for cleaner filtering -->
+       </div>
+      
+       <!-- Loading State -->
+       <div id="loader" class="mt-12 flex justify-center hidden">
+           <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-terracotta"></div>
+       </div>
+      
+       <div class="mt-12 flex justify-center" id="loadMoreBtn">
+           <button class="px-8 py-3 rounded-full bg-white border border-gray-200 text-gray-600 font-medium hover:border-terracotta hover:text-terracotta hover:shadow-soft transition-all">
+               Load more inspiration
+           </button>
+       </div>
+   </main>
+
+
+   <!-- Footer -->
+   <footer class="bg-white border-t border-stone-200 py-12 mt-auto">
+       <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+           <div class="mb-4 md:mb-0">
+                <span class="font-serif text-xl font-bold text-gray-900 block">Explore.</span>
+                <span class="text-xs text-gray-400 mt-1 block">Curated by designers, for designers.</span>
+           </div>
+           <div class="flex space-x-8 text-sm font-medium">
+               <a href="#" class="text-gray-500 hover:text-terracotta transition-colors">About</a>
+               <a href="#" class="text-gray-500 hover:text-terracotta transition-colors">Submission Rules</a>
+               <a href="#" class="text-gray-500 hover:text-terracotta transition-colors">Privacy Policy</a>
+           </div>
+       </div>
+   </footer>
+
+
+   <!-- Lightbox Modal -->
+   <div id="lightbox" class="fixed inset-0 z-50 flex items-center justify-center bg-white/95 backdrop-blur-sm hidden p-4 sm:p-8">
+       <button id="closeLightbox" class="absolute top-6 right-6 p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors z-50">
+           <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+       </button>
+      
+       <div class="relative w-full max-w-5xl h-full flex flex-col md:flex-row bg-white rounded-2xl shadow-2xl overflow-hidden animate-scaleIn">
+           <!-- Image Side -->
+           <div class="w-full md:w-2/3 h-1/2 md:h-full bg-gray-50 relative">
+               <img id="lightboxImg" src="" class="w-full h-full object-contain" alt="Full view">
+           </div>
+          
+           <!-- Details Side -->
+           <div class="w-full md:w-1/3 h-1/2 md:h-full p-8 flex flex-col overflow-y-auto">
+               <div class="flex justify-between items-start mb-6">
+                   <div class="flex items-center gap-3">
+                       <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
+                           <img id="lightboxAvatar" src="" class="w-full h-full object-cover">
+                       </div>
+                       <div>
+                           <h3 id="lightboxUser" class="font-bold text-gray-900 text-sm">Username</h3>
+                           <p class="text-xs text-gray-500">Follow</p>
+                       </div>
+                   </div>
+                   <button class="text-gray-400 hover:text-terracotta transition-colors">
+                       <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                   </button>
+               </div>
+              
+               <h2 id="lightboxTitle" class="text-2xl font-serif font-bold text-gray-900 mb-2">Title</h2>
+               <p id="lightboxCategory" class="text-xs font-bold uppercase tracking-wider text-terracotta mb-4">Category</p>
+               <p class="text-gray-600 text-sm leading-relaxed mb-8">
+                   This is a curated piece selected for its unique aesthetic and contribution to the visual arts.
+               </p>
+              
+               <div class="mt-auto">
+                   <button class="w-full py-3 bg-terracotta hover:bg-terracotta-dark text-white rounded-full font-medium transition-colors shadow-lg shadow-terracotta/30">
+                       Visit Website
+                   </button>
+               </div>
+           </div>
+       </div>
+   </div>
+
+
+   <script>
+       // --- Data ---
+       const items = [
+           { id: 1, type: 'architecture', img: 'https://images.unsplash.com/photo-1600607686527-6fb886090705?w=800&q=80', user: 'Sarah J.', userImg: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=64', title: 'Concrete Dreams' },
+           { id: 2, type: 'design', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80', user: 'Davide M.', userImg: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=64', title: 'Abstract Flow' },
+           { id: 3, type: 'technology', img: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80', user: 'TechDaily', userImg: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=64', title: 'Cyber Future' },
+           { id: 4, type: 'photography', img: 'https://images.unsplash.com/photo-1493863641943-9b68992a8d07?w=800&q=80', user: 'PhotoPro', userImg: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64', title: 'Golden Hour' },
+           { id: 5, type: 'design', img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80', user: 'Interiors', userImg: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=64', title: 'Modern Chair' },
+           { id: 6, type: 'typography', img: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80', user: 'TypeFoundry', userImg: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=64', title: 'Bold Serifs' },
+           { id: 7, type: 'architecture', img: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=800&q=80', user: 'ArchDigest', userImg: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=64', title: 'Spiral Staircase' },
+           { id: 8, type: 'design', img: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80', user: 'WebMaster', userImg: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64', title: 'UI Kit Dark' },
+       ];
+
+
+       const container = document.getElementById('grid-container');
+
+
+       // --- Render Items ---
+       function renderItems(filter = 'all') {
+           container.innerHTML = ''; // Clear grid
+          
+           const filteredItems = filter === 'all'
+               ? items
+               : items.filter(item => item.type === filter);
+
+
+           filteredItems.forEach((item, index) => {
+               const el = document.createElement('div');
+               el.className = `masonry-item relative group cursor-zoom-in fade-in`;
+               el.style.animationDelay = `${index * 0.1}s`;
+              
+               el.innerHTML = `
+                   <div class="relative overflow-hidden rounded-2xl bg-gray-100 shadow-sm group-hover:shadow-hover transition-all duration-300">
+                       <img src="${item.img}" alt="${item.title}" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700">
+                      
+                       <!-- Overlay -->
+                       <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4">
+                           <div class="flex justify-end">
+                               <button class="save-btn bg-terracotta text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg hover:bg-terracotta-dark">Save</button>
+                           </div>
+                           <div>
+                               <h3 class="text-white font-serif italic text-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75">${item.title}</h3>
+                           </div>
+                       </div>
+                   </div>
+                  
+                   <div class="mt-3 flex justify-between items-center px-1">
+                       <div class="flex items-center gap-2">
+                           <div class="w-6 h-6 rounded-full bg-gray-200 overflow-hidden">
+                               <img src="${item.userImg}" class="w-full h-full object-cover">
+                           </div>
+                           <span class="text-xs font-medium text-gray-700 hover:underline cursor-pointer">${item.user}</span>
+                       </div>
+                       <button class="text-gray-400 hover:text-red-500 transition-colors transform active:scale-125 duration-150" onclick="toggleLike(this)">
+                           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                       </button>
+                   </div>
+               `;
+              
+               // Add Click Handler for Lightbox
+               el.querySelector('img').addEventListener('click', () => openLightbox(item));
+               el.querySelector('.relative').addEventListener('click', (e) => {
+                  if(e.target === e.currentTarget || e.target.tagName === 'IMG' || e.target.tagName === 'H3') {
+                      openLightbox(item);
+                  }
+               });
+
+
+               container.appendChild(el);
+           });
+          
+           if (filteredItems.length === 0) {
+               container.innerHTML = '<div class="col-span-full text-center py-20 text-gray-400">No ideas found for this category.</div>';
+           }
+       }
+
+
+       // --- Interactivity ---
+      
+       // 1. Filtering
+       const filterBtns = document.querySelectorAll('.filter-btn');
+       filterBtns.forEach(btn => {
+           btn.addEventListener('click', () => {
+               // Update UI
+               filterBtns.forEach(b => {
+                   b.classList.remove('bg-charcoal', 'text-white', 'shadow-md');
+                   b.classList.add('bg-white', 'text-gray-600', 'border-stone-200');
+               });
+               btn.classList.remove('bg-white', 'text-gray-600', 'border-stone-200');
+               btn.classList.add('bg-charcoal', 'text-white', 'shadow-md');
+              
+               // Filter
+               renderItems(btn.dataset.filter);
+           });
+       });
+
+
+       // 2. Like Toggle
+       window.toggleLike = function(btn) {
+           const svg = btn.querySelector('svg');
+           if (btn.classList.contains('text-red-500')) {
+               btn.classList.remove('text-red-500');
+               btn.classList.add('text-gray-400');
+               svg.setAttribute('fill', 'none');
+           } else {
+               btn.classList.remove('text-gray-400');
+               btn.classList.add('text-red-500');
+               svg.setAttribute('fill', 'currentColor');
+           }
+       };
+
+
+       // 3. Lightbox Logic
+       const lightbox = document.getElementById('lightbox');
+       const closeLightbox = document.getElementById('closeLightbox');
+      
+       function openLightbox(item) {
+           document.getElementById('lightboxImg').src = item.img;
+           document.getElementById('lightboxTitle').innerText = item.title;
+           document.getElementById('lightboxUser').innerText = item.user;
+           document.getElementById('lightboxAvatar').src = item.userImg;
+           document.getElementById('lightboxCategory').innerText = item.type;
+          
+           lightbox.classList.remove('hidden');
+           document.body.style.overflow = 'hidden'; // Prevent scrolling
+       }
+      
+       function closeLightboxFn() {
+           lightbox.classList.add('hidden');
+           document.body.style.overflow = 'auto';
+       }
+
+
+       closeLightbox.addEventListener('click', closeLightboxFn);
+      
+       // Close on background click
+       lightbox.addEventListener('click', (e) => {
+           if (e.target === lightbox) closeLightboxFn();
+       });
+      
+       // Close on Escape key
+       document.addEventListener('keydown', (e) => {
+           if (e.key === 'Escape') closeLightboxFn();
+       });
+
+
+       // Initial Render
+       renderItems();
+
+
+       // Header Scroll Effect
+       window.addEventListener('scroll', () => {
+           const nav = document.getElementById('navbar');
+           if (window.scrollY > 20) {
+               nav.classList.add('shadow-sm');
+           } else {
+               nav.classList.remove('shadow-sm');
+           }
+       });
+
+
+   </script>
+</body>
+</html>
