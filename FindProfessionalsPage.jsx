@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 const navLinks = [
   { label: "Explore Ideas", href: "#" },
@@ -8,75 +8,82 @@ const navLinks = [
 
 const professionalsData = [
   {
+    id: 1,
     name: "Trusted Builders Ltd",
     startingPrice: "Projects starting from ₹5L",
     description:
-      "We craft bespoke residential and commercial spaces with meticulous attention to detail and a passion for timeless design.",
-    services: ["Environment", "Furniture and people", "Texturing & lighting", "+2"],
+      "If you're frustrated with generic designs lacking a human touch, experience the difference with Alvadespro. We bring your vision to life with high-quality 3D interior d...",
+    services: ["Environment", "Furniture and people", "Texturing & lighting", "+ 2"],
+    logo: "https://randomuser.me/api/portraits/men/32.jpg",
     imageUrls: [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=600",
     ],
   },
   {
-    name: "Calm Interiors Studio",
+    id: 2,
+    name: "Bengaluru Private Interiors Pvt Ltd",
     startingPrice: "Projects starting from ₹5L",
     description:
-      "Minimal, serene interiors tailored for modern living. We merge comfort, texture, and lighting to create relaxing sanctuaries.",
-    services: ["Environment", "Texturing & lighting", "Material sourcing", "+2"],
+      "If you're frustrated with generic designs lacking a human touch, experience the difference with Alvadespro. We bring your vision to life with high-quality 3D interior d...",
+    services: ["Environment", "Furniture and people"],
+    logo: "https://randomuser.me/api/portraits/men/45.jpg",
     imageUrls: [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1505692069463-3b454af1c602?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600596542815-2a4d04774c13?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=600",
     ],
   },
   {
-    name: "North Star Construction",
+    id: 3,
+    name: "Sample Company Pvt Ltd",
     startingPrice: "Projects starting from ₹5L",
     description:
-      "Full-service construction and interior build-outs for upscale residences, blending craftsmanship with reliable delivery.",
-    services: ["Construction", "Project management", "Custom cabinetry", "+2"],
+      "If you're frustrated with generic designs lacking a human touch, experience the difference with Alvadespro. We bring your vision to life with high-quality 3D interior d...",
+    services: ["Furniture and people", "Texturing & lighting"],
+    logo: "https://randomuser.me/api/portraits/men/22.jpg",
     imageUrls: [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1505692069463-3b454af1c602?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1617159268737-a791a9fd4994?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&q=80&w=600",
     ],
   },
   {
-    name: "Atelier & Co. Designs",
+    id: 4,
+    name: "Envato Prime Designs",
     startingPrice: "Projects starting from ₹5L",
     description:
-      "Boutique design house creating luxurious spaces with curated materials, bespoke furnishings, and personalized styling.",
-    services: ["Bespoke furniture", "Lighting plans", "Styling", "+2"],
+      "If you're frustrated with generic designs lacking a human touch, experience the difference with Alvadespro. We bring your vision to life with high-quality 3D interior d...",
+    services: ["Environment"],
+    logo: "https://randomuser.me/api/portraits/men/64.jpg",
     imageUrls: [
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1505692069463-3b454af1c602?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1616137466211-f939a420be84?auto=format&fit=crop&q=80&w=600",
     ],
   },
   {
-    name: "Urban Nest Studios",
-    startingPrice: "Projects starting from ₹5L",
+    id: 5,
+    name: "Modern Living Spaces",
+    startingPrice: "Projects starting from ₹7L",
     description:
-      "Contemporary interiors featuring layered textures, thoughtful lighting, and custom-built storage for elevated city living.",
-    services: ["Interior design", "Lighting plans", "Custom storage", "+2"],
+      "Specializing in minimalist modern designs that maximize space and light. Our team ensures a seamless execution from concept to reality.",
+    services: ["Interior Design", "Furniture"],
+    logo: "https://randomuser.me/api/portraits/women/44.jpg",
     imageUrls: [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=600",
     ],
   },
   {
-    name: "Haven Makers Collective",
-    startingPrice: "Projects starting from ₹5L",
+    id: 6,
+    name: "Urban Chic Studios",
+    startingPrice: "Projects starting from ₹4.5L",
     description:
-      "Holistic design-build team crafting tranquil retreats with sustainable materials, mindful layouts, and artisan finishes.",
-    services: ["Sustainable design", "Construction", "Bespoke furniture", "+2"],
+      "Bringing urban chic to your doorstep. We focus on sustainable materials and contemporary aesthetics suitable for city living.",
+    services: ["Environment", "Texturing"],
+    logo: "https://randomuser.me/api/portraits/women/65.jpg",
     imageUrls: [
-      "https://images.unsplash.com/photo-1505692069463-3b454af1c602?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1600596542815-2a4d04774c13?auto=format&fit=crop&q=80&w=600",
     ],
   },
 ];
@@ -116,9 +123,13 @@ const MagnifierIcon = ({ className = "" }) => (
   </svg>
 );
 
-const AvatarPlaceholder = () => (
-  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center text-slate-500 font-semibold">
-    <span className="text-sm">XP</span>
+const Avatar = ({ src, name }) => (
+  <div className="w-11 h-11 rounded-full overflow-hidden bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center text-slate-500 font-semibold">
+    {src ? (
+      <img src={src} alt={`${name} logo`} className="w-full h-full object-cover" />
+    ) : (
+      <span className="text-sm">XP</span>
+    )}
   </div>
 );
 
@@ -128,10 +139,10 @@ const FooterSocial = ({ label }) => (
   </span>
 );
 
-const ProfessionalCard = ({ professional, index, activeIndex, onPrev, onNext }) => {
+const ProfessionalCard = ({ professional, activeIndex, onPrev, onNext }) => {
   const currentImage = useMemo(
-    () => professional.imageUrls[activeIndex[index]],
-    [activeIndex, index, professional.imageUrls]
+    () => professional.imageUrls[activeIndex[professional.id] ?? 0],
+    [activeIndex, professional.id, professional.imageUrls]
   );
 
   return (
@@ -144,14 +155,14 @@ const ProfessionalCard = ({ professional, index, activeIndex, onPrev, onNext }) 
         />
         <button
           type="button"
-          onClick={() => onPrev(index)}
+          onClick={() => onPrev(professional.id)}
           className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/70 text-white flex items-center justify-center hover:bg-slate-900/90 transition"
         >
           <ArrowIcon className="w-5 h-5" />
         </button>
         <button
           type="button"
-          onClick={() => onNext(index)}
+          onClick={() => onNext(professional.id)}
           className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/70 text-white flex items-center justify-center hover:bg-slate-900/90 transition"
         >
           <ArrowIcon direction="right" className="w-5 h-5" />
@@ -162,14 +173,14 @@ const ProfessionalCard = ({ professional, index, activeIndex, onPrev, onNext }) 
         <div className="text-sm font-semibold text-slate-800">{professional.startingPrice}</div>
 
         <div className="flex items-center gap-3">
-          <AvatarPlaceholder />
+          <Avatar src={professional.logo} name={professional.name} />
           <div>
             <h3 className="text-lg font-semibold text-slate-900 font-serif">{professional.name}</h3>
           </div>
         </div>
 
         <p className="text-slate-600 leading-relaxed text-sm">
-          {professional.description} <a className="text-[#d39a8c] font-semibold" href="#">See more</a>
+          {professional.description} <a className="text-[#c88a76] font-semibold" href="#">See more</a>
         </p>
 
         <div>
@@ -178,7 +189,7 @@ const ProfessionalCard = ({ professional, index, activeIndex, onPrev, onNext }) 
             {professional.services.map((service) => (
               <span
                 key={service}
-                className="px-3 py-1 rounded-full bg-[#d39a8c] text-white text-xs font-semibold tracking-wide"
+                className="px-3 py-1 rounded-full bg-[#DFAEA1] text-white text-xs font-semibold tracking-wide"
               >
                 {service}
               </span>
@@ -191,36 +202,74 @@ const ProfessionalCard = ({ professional, index, activeIndex, onPrev, onNext }) 
 };
 
 export default function FindProfessionalsPage() {
-  const [activeIndex, setActiveIndex] = useState(
-    () => professionalsData.map(() => 0)
+  const [activeIndex, setActiveIndex] = useState(() =>
+    Object.fromEntries(professionalsData.map((pro) => [pro.id, 0]))
   );
+  const [searchTerm, setSearchTerm] = useState("");
+  const [visibleCount, setVisibleCount] = useState(4);
 
-  const handlePrev = (cardIndex) => {
-    setActiveIndex((prev) =>
-      prev.map((value, idx) => {
-        if (idx !== cardIndex) return value;
-        const images = professionalsData[idx].imageUrls;
-        return (value - 1 + images.length) % images.length;
-      })
+  const filteredProfessionals = useMemo(() => {
+    const term = searchTerm.trim().toLowerCase();
+    if (!term) return professionalsData;
+
+    return professionalsData.filter((pro) => {
+      const matchesName = pro.name.toLowerCase().includes(term);
+      const matchesDescription = pro.description.toLowerCase().includes(term);
+      const matchesServices = pro.services.some((service) =>
+        service.toLowerCase().includes(term)
+      );
+
+      return matchesName || matchesDescription || matchesServices;
+    });
+  }, [searchTerm]);
+
+  useEffect(() => {
+    if (filteredProfessionals.length === 0) {
+      setVisibleCount(0);
+      return;
+    }
+
+    setVisibleCount((prev) =>
+      Math.min(Math.max(prev || 4, 4), filteredProfessionals.length)
     );
+  }, [filteredProfessionals.length]);
+
+  const handlePrev = (cardId) => {
+    setActiveIndex((prev) => {
+      const images =
+        professionalsData.find((pro) => pro.id === cardId)?.imageUrls || [];
+      if (images.length === 0) return prev;
+      const current = prev[cardId] ?? 0;
+      return {
+        ...prev,
+        [cardId]: (current - 1 + images.length) % images.length,
+      };
+    });
   };
 
-  const handleNext = (cardIndex) => {
-    setActiveIndex((prev) =>
-      prev.map((value, idx) => {
-        if (idx !== cardIndex) return value;
-        const images = professionalsData[idx].imageUrls;
-        return (value + 1) % images.length;
-      })
-    );
+  const handleNext = (cardId) => {
+    setActiveIndex((prev) => {
+      const images =
+        professionalsData.find((pro) => pro.id === cardId)?.imageUrls || [];
+      if (images.length === 0) return prev;
+      const current = prev[cardId] ?? 0;
+      return {
+        ...prev,
+        [cardId]: (current + 1) % images.length,
+      };
+    });
   };
+
+  const visibleProfessionals = filteredProfessionals.slice(0, visibleCount);
+
+  const canLoadMore = visibleCount < filteredProfessionals.length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#ffe8de] via-[#ffdcd4] to-[#ffd0c8] text-slate-800 font-sans">
+    <div className="min-h-screen bg-gradient-to-b from-rose-50 via-rose-100/60 to-orange-100/30 text-slate-800 font-sans">
       <header className="sticky top-0 z-20 bg-[#050b2a] text-white shadow-lg">
         <div className="max-w-screen-xl mx-auto px-6 lg:px-12 flex items-center justify-between h-16">
           <div className="flex items-center gap-3 font-semibold tracking-wide">
-            <span className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-[#d39a8c] font-serif text-lg">✦</span>
+            <span className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-[#c88a76] font-serif text-lg">✦</span>
             <span className="text-lg">XSpace</span>
           </div>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
@@ -228,8 +277,8 @@ export default function FindProfessionalsPage() {
               <a
                 key={link.label}
                 href={link.href}
-                className={`transition hover:text-[#d39a8c] ${
-                  link.active ? "border-b-2 border-[#d39a8c] pb-1" : ""
+                className={`transition hover:text-[#c88a76] ${
+                  link.active ? "border-b-2 border-[#c88a76] pb-1" : ""
                 }`}
               >
                 {link.label}
@@ -268,7 +317,9 @@ export default function FindProfessionalsPage() {
             <h2 className="text-2xl lg:text-3xl font-serif text-[#050b2a] tracking-wide">
               Discover Trusted Professionals
             </h2>
-            <span className="text-sm text-slate-500">Found 6 professionals</span>
+            <span className="text-sm text-slate-500">
+              Found {filteredProfessionals.length} professionals
+            </span>
           </div>
 
           <div className="flex items-center gap-3 bg-white border border-slate-200 rounded-full px-4 py-3 shadow-sm">
@@ -276,12 +327,14 @@ export default function FindProfessionalsPage() {
             <input
               type="text"
               placeholder="Search"
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
               className="flex-1 outline-none text-sm text-slate-700 placeholder:text-slate-400"
             />
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
-            <button className="px-4 py-2 rounded-full bg-[#d39a8c] text-white text-sm font-semibold shadow-sm">
+            <button className="px-4 py-2 rounded-full bg-[#c88a76] text-white text-sm font-semibold shadow-sm">
               Popular
             </button>
             <button className="px-4 py-2 rounded-full bg-white border border-slate-200 text-sm text-slate-700 hover:bg-slate-50 transition">
@@ -289,24 +342,39 @@ export default function FindProfessionalsPage() {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-            {professionalsData.slice(0, 4).map((professional, index) => (
-              <ProfessionalCard
-                key={professional.name}
-                professional={professional}
-                index={index}
-                activeIndex={activeIndex}
-                onPrev={handlePrev}
-                onNext={handleNext}
-              />
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 min-h-[200px]">
+            {visibleProfessionals.length === 0 ? (
+              <div className="col-span-1 md:col-span-2 text-center text-slate-500 py-10">
+                No professionals found matching your search.
+              </div>
+            ) : (
+              visibleProfessionals.map((professional) => (
+                <ProfessionalCard
+                  key={professional.id}
+                  professional={professional}
+                  activeIndex={activeIndex}
+                  onPrev={handlePrev}
+                  onNext={handleNext}
+                />
+              ))
+            )}
           </div>
 
-          <div className="text-center">
-            <button className="px-5 py-2 text-[#d39a8c] font-semibold rounded-full hover:bg-[#d39a8c]/10 transition">
-              See more
-            </button>
-          </div>
+          {canLoadMore && (
+            <div className="text-center">
+            <button
+                type="button"
+                className="px-5 py-2 text-[#c88a76] font-semibold rounded-full hover:bg-[#c88a76]/10 transition"
+                onClick={() =>
+                  setVisibleCount((prev) =>
+                    Math.min(prev + 2, filteredProfessionals.length)
+                  )
+                }
+              >
+                See more
+              </button>
+            </div>
+          )}
         </section>
       </main>
 
@@ -315,7 +383,7 @@ export default function FindProfessionalsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div className="space-y-4">
               <div className="flex items-center gap-3 font-semibold tracking-wide">
-                <span className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-[#d39a8c] font-serif text-lg">✦</span>
+                <span className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-[#c88a76] font-serif text-lg">✦</span>
                 <span className="text-lg">XSpace</span>
               </div>
               <div className="space-y-2 text-sm text-white/80 leading-relaxed">
@@ -327,13 +395,13 @@ export default function FindProfessionalsPage() {
 
             <div className="space-y-4">
               <div className="text-sm space-y-2">
-                <a className="block hover:text-[#d39a8c] transition" href="#">
+                <a className="block hover:text-[#c88a76] transition" href="#">
                   Explore Ideas
                 </a>
-                <a className="block hover:text-[#d39a8c] transition" href="#">
+                <a className="block hover:text-[#c88a76] transition" href="#">
                   Find Professionals
                 </a>
-                <a className="block hover:text-[#d39a8c] transition" href="#">
+                <a className="block hover:text-[#c88a76] transition" href="#">
                   Ask Experts
                 </a>
               </div>
@@ -346,13 +414,13 @@ export default function FindProfessionalsPage() {
 
             <div className="flex md:items-end">
               <div className="flex flex-col gap-2 text-xs text-white/70">
-                <a className="hover:text-[#d39a8c] transition" href="#">
+                <a className="hover:text-[#c88a76] transition" href="#">
                   Terms & Condition
                 </a>
-                <a className="hover:text-[#d39a8c] transition" href="#">
+                <a className="hover:text-[#c88a76] transition" href="#">
                   Privacy & Policy
                 </a>
-                <a className="hover:text-[#d39a8c] transition" href="#">
+                <a className="hover:text-[#c88a76] transition" href="#">
                   Cookies
                 </a>
               </div>
