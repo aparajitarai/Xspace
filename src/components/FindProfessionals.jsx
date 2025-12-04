@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import {
   Search,
   ChevronDown,
@@ -182,21 +183,21 @@ const Navbar = () => {
   return (
     <nav className="bg-[#050B1B] text-white py-4 px-6 sticky top-0 z-50 shadow-md">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <div className="flex items-center gap-2 cursor-pointer">
+        <Link to="/" className="flex items-center gap-2 cursor-pointer">
           <div className="relative">
             <span className="absolute -inset-1 rounded-full blur-[2px] bg-white/20"></span>
             <Star className="text-white relative z-10 fill-current" size={20} />
           </div>
           <span className="font-serif text-xl font-bold tracking-wide">XSpace</span>
-        </div>
+        </Link>
 
         <div className="hidden md:flex items-center space-x-8 text-sm font-light tracking-wide text-gray-300">
-          <a href="#" className="hover:text-white transition-colors">
+          <Link to="/explore" className="hover:text-white transition-colors">
             Explore Ideas
-          </a>
-          <a href="#" className="text-white font-semibold">
+          </Link>
+          <Link to="/professionals" className="text-white font-semibold">
             Find Professionals
-          </a>
+          </Link>
           <a href="#" className="hover:text-white transition-colors">
             Ask Experts
           </a>
@@ -214,12 +215,12 @@ const Navbar = () => {
 
       {isOpen && (
         <div className="md:hidden mt-4 pb-4 space-y-4 text-center border-t border-gray-800 pt-4 animate-fadeIn">
-          <a href="#" className="block hover:text-white text-gray-300">
+          <Link to="/explore" className="block hover:text-white text-gray-300">
             Explore Ideas
-          </a>
-          <a href="#" className="block text-white font-bold">
+          </Link>
+          <Link to="/professionals" className="block text-white font-bold">
             Find Professionals
-          </a>
+          </Link>
           <a href="#" className="block hover:text-white text-gray-300">
             Ask Experts
           </a>
