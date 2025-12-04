@@ -21,7 +21,7 @@ const Navbar = () => {
         
         <div className="hidden md:flex items-center gap-8 text-sm font-medium opacity-90">
           <Link to="/explore" className="hover:text-amber-200 transition-colors">Explore Ideas</Link>
-          <a href="#professionals" className="hover:text-amber-200 transition-colors">Find Professionals</a>
+          <Link to="/professionals" className="hover:text-amber-200 transition-colors">Find Professionals</Link>
           <a href="#" className="hover:text-amber-200 transition-colors">Ask Experts</a>
         </div>
 
