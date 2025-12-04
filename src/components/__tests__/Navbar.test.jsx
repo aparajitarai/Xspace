@@ -10,6 +10,6 @@ describe('Navbar', () => {
         <Navbar />
       </BrowserRouter>
     )
-    expect(screen.getByText(/XSpace/i)).toBeInTheDocument()
+    expect(screen.getByText(/HomePage/i)).toBeInTheDocument()
   })
 })

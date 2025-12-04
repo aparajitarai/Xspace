@@ -28,6 +28,6 @@ describe('FindProfessionals', () => {
         <FindProfessionals />
       </BrowserRouter>
     )
-    expect(screen.getAllByText(/Projects starting from/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Starting from/i).length).toBeGreaterThan(0)
   })
 })
