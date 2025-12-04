@@ -192,7 +192,7 @@ export default function FindProfessionalsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#ffe8de] to-[#ffd3cf] text-slate-800">
+    <div id="professionals" className="min-h-screen bg-gradient-to-b from-[#ffe8de] to-[#ffd3cf] text-slate-800">
       <header className="sticky top-0 z-20 bg-[#050b2a] text-white shadow-lg">
         <div className="max-w-screen-xl mx-auto px-6 lg:px-12 flex items-center justify-between h-16">
           <div className="flex items-center gap-3 font-semibold tracking-wide">

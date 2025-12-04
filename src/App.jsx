@@ -5,6 +5,7 @@ import Hero from './components/Hero'
 import WhyChoose from './components/WhyChoose'
 import EverythingYouNeed from './components/EverythingYouNeed'
 import ProcessSection from './components/ProcessSection'
+import FindProfessionals from './components/FindProfessionals'
 import ContactFooter from './components/ContactFooter'
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
       <WhyChoose />
       <EverythingYouNeed />
       <ProcessSection />
+      <FindProfessionals />
       <ContactFooter />
     </div>
   )
