@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6 flex justify-between items-center text-white">
         <Link to="/" className="flex items-center gap-2 font-bold text-xl tracking-wider hover:opacity-80 transition-opacity">
           <StarIcon />
-          <span className="serif-font">HomePage</span>
+          <span className="serif-font">XSpace</span>
         </Link>
         
         <div className="hidden md:flex items-center gap-8 text-sm font-medium opacity-90">

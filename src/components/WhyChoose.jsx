@@ -23,7 +23,7 @@ const WhyChoose = () => {
     <section className="bg-[#0B1120] py-24 text-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 max-w-2xl mx-auto">
-          <h2 className="text-4xl serif-font mb-4">Why Choose HomePage</h2>
+          <h2 className="text-4xl serif-font mb-4">Why Choose XSpace</h2>
           <p className="text-slate-400 font-light">Explore curated designs, real-time cost estimates, and connect with trusted professionals. All in one seamless experience.</p>
         </div>
 

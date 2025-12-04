@@ -19,8 +19,8 @@ const Hero = () => {
           {/* Left Content */}
           <div className="space-y-8 text-white max-w-2xl">
             <h1 className="text-5xl md:text-7xl leading-tight font-light serif-font">
-              Welcome to Your <br/>
-              <span className="font-semibold text-amber-100/90">Design HomePage</span>
+              From Vision To Reality, <br/>
+              <span className="font-semibold text-amber-100/90">Curated Designs For You</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-200 font-light leading-relaxed max-w-lg">
               Explore curated design ideas, real-time cost estimates, and connect with trusted professionals. All in one seamless experience.
