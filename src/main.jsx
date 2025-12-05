@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import App from './App'
 import ExploreIdeas from './components/ExploreIdeas'
-import FindProfessionals from './components/FindProfessionals'
 import NewProfessionals from './components/NewProfessionals'
 import './index.css'
 
