@@ -20,14 +20,16 @@ const Navbar = () => {
         </Link>
         
         <div className="hidden md:flex items-center gap-8 text-sm font-medium opacity-90">
-          <Link to="/explore" className="hover:text-amber-200 transition-colors">
-            Explore Ideas
-          </Link>
-          <Link to="/professionals" className="hover:text-amber-200 transition-colors">
-            Find Professionals
-          </Link>
-          <a href="#" className="hover:text-amber-200 transition-colors">Ask Experts</a>
-        </div>
+        <Link to="/explore" className="hover:text-amber-200 transition-colors">
+          Explore Ideas
+        </Link>
+        <Link to="/new-professionals" className="hover:text-amber-200 transition-colors">
+          Find Professionals
+        </Link>
+        <Link to="/ask-experts" className="hover:text-amber-200 transition-colors">
+          Ask Experts
+        </Link>
+      </div>
 
         <div className="flex items-center gap-4">
           <button className="text-sm font-medium hover:text-amber-200 transition-colors">Sign In</button>
