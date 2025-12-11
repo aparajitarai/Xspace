@@ -1,6 +1,6 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import App from './App'
 import ExploreIdeas from './components/ExploreIdeas'
 import AskExperts from './components/AskExperts'
@@ -14,6 +14,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} />
         <Route path="/explore" element={<ExploreIdeas />} />
         <Route path="/find-professionals" element={<FindProfessionals />} />
+        <Route path="/professionals" element={<Navigate to="/find-professionals" replace />} />
         <Route path="/ask-experts" element={<AskExperts />} />
       </Routes>
     </Router>
