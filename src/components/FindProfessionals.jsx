@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import GlobalStyles from './GlobalStyles'
 import ContactFooter from './ContactFooter'
 import {
@@ -206,30 +207,30 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-col md:flex-row gap-8 md:gap-16 text-sm font-medium text-gray-300">
-            <a href="/explore" className="hover:text-white transition-colors">
+            <Link to="/explore" className="hover:text-white transition-colors">
               Explore Ideas
-            </a>
-            <a href="/find-professionals" className="hover:text-white transition-colors">
+            </Link>
+            <Link to="/find-professionals" className="hover:text-white transition-colors">
               Find Professionals
-            </a>
-            <a href="/ask-experts" className="hover:text-white transition-colors">
+            </Link>
+            <Link to="/ask-experts" className="hover:text-white transition-colors">
               Ask Experts
-            </a>
+            </Link>
           </div>
         </div>
 
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-500">
           <p>&copy; 2025 XSpace Pvt Ltd. All rights reserved.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-gray-300 transition-colors">
+            <Link to="/terms" className="hover:text-gray-300 transition-colors">
               Terms & Condition
-            </a>
-            <a href="#" className="hover:text-gray-300 transition-colors">
+            </Link>
+            <Link to="/privacy" className="hover:text-gray-300 transition-colors">
               Privacy & Policy
-            </a>
-            <a href="#" className="hover:text-gray-300 transition-colors">
+            </Link>
+            <Link to="/cookies" className="hover:text-gray-300 transition-colors">
               Cookies
-            </a>
+            </Link>
           </div>
 
           <div className="flex gap-3 mt-4 md:mt-0">
@@ -263,15 +264,15 @@ const MobileMenu = ({ isOpen }) => {
 
   return (
     <div className="md:hidden mt-4 pb-4 space-y-4 text-center border-t border-gray-800 pt-4 animate-fadeIn">
-      <a href="/explore" className="block hover:text-white text-gray-300">
+      <Link to="/explore" className="block hover:text-white text-gray-300">
         Explore Ideas
-      </a>
-      <a href="/find-professionals" className="block text-white font-bold">
+      </Link>
+      <Link to="/find-professionals" className="block text-white font-bold">
         Find Professionals
-      </a>
-      <a href="/ask-experts" className="block hover:text-white text-gray-300">
+      </Link>
+      <Link to="/ask-experts" className="block hover:text-white text-gray-300">
         Ask Experts
-      </a>
+      </Link>
       <div className="flex justify-center gap-4 pt-2">
         <button className="border border-gray-500 text-xs px-4 py-1.5 rounded-full">Sign Up</button>
         <button className="bg-white text-[#050B1B] text-xs font-semibold px-4 py-1.5 rounded-full">Log In</button>
@@ -294,17 +295,17 @@ const StickyNavbar = () => {
           <span className="font-serif text-xl font-bold tracking-wide">XSpace</span>
         </div>
 
-        <div className="hidden md:flex items-center space-x-8 text-sm font-light tracking-wide text-gray-300">
-          <a href="/explore" className="hover:text-white transition-colors">
-            Explore Ideas
-          </a>
-          <a href="/find-professionals" className="text-white font-semibold">
-            Find Professionals
-          </a>
-          <a href="/ask-experts" className="hover:text-white transition-colors">
-            Ask Experts
-          </a>
-        </div>
+          <div className="hidden md:flex items-center space-x-8 text-sm font-light tracking-wide text-gray-300">
+            <Link to="/explore" className="hover:text-white transition-colors">
+              Explore Ideas
+            </Link>
+            <Link to="/find-professionals" className="text-white font-semibold">
+              Find Professionals
+            </Link>
+            <Link to="/ask-experts" className="hover:text-white transition-colors">
+              Ask Experts
+            </Link>
+          </div>
 
         <div className="hidden md:flex items-center gap-3">
           <button className="border border-gray-500 hover:border-white text-xs px-5 py-1.5 rounded-full transition-colors">
