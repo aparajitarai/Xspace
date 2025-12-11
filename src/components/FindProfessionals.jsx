@@ -2,21 +2,7 @@ import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import GlobalStyles from './GlobalStyles'
 import ContactFooter from './ContactFooter'
-import {
-  Search,
-  ChevronDown,
-  MapPin,
-  Phone,
-  Mail,
-  ChevronLeft,
-  ChevronRight,
-  Star,
-  Twitter,
-  Linkedin,
-  Instagram,
-  Menu,
-  X,
-} from './icons'
+import { Search, ChevronDown, ChevronLeft, ChevronRight, Star, Menu, X } from './icons'
 
 const PROFESSIONALS_DATA = [
   {
@@ -179,86 +165,6 @@ const ProfessionalCard = ({ data }) => {
   )
 }
 
-const Footer = () => {
-  return (
-    <footer className="bg-[#050B1B] text-gray-400 py-12 px-6 mt-auto">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start mb-12">
-          <div className="mb-8 md:mb-0 space-y-6">
-            <div className="flex items-center gap-2 text-white">
-              <Star className="text-white" size={20} />
-              <span className="font-serif text-xl font-bold tracking-wide">XSpace</span>
-            </div>
-
-            <div className="space-y-3 text-xs font-light">
-              <div className="flex items-center gap-3">
-                <MapPin size={14} className="text-gray-500" />
-                <span>123 Design Street, Creativity City, Country</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone size={14} className="text-gray-500" />
-                <span>+123-456-7890</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Mail size={14} className="text-gray-500" />
-                <span>hello@xspace.com</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16 text-sm font-medium text-gray-300">
-            <Link to="/explore" className="hover:text-white transition-colors">
-              Explore Ideas
-            </Link>
-            <Link to="/find-professionals" className="hover:text-white transition-colors">
-              Find Professionals
-            </Link>
-            <Link to="/ask-experts" className="hover:text-white transition-colors">
-              Ask Experts
-            </Link>
-          </div>
-        </div>
-
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-500">
-          <p>&copy; 2025 XSpace Pvt Ltd. All rights reserved.</p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <Link to="/terms" className="hover:text-gray-300 transition-colors">
-              Terms & Condition
-            </Link>
-            <Link to="/privacy" className="hover:text-gray-300 transition-colors">
-              Privacy & Policy
-            </Link>
-            <Link to="/cookies" className="hover:text-gray-300 transition-colors">
-              Cookies
-            </Link>
-          </div>
-
-          <div className="flex gap-3 mt-4 md:mt-0">
-            <a
-              href="#"
-              className="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center hover:bg-slate-700 transition-colors text-white"
-            >
-              <Instagram size={12} />
-            </a>
-            <a
-              href="#"
-              className="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center hover:bg-slate-700 transition-colors text-white"
-            >
-              <Twitter size={12} />
-            </a>
-            <a
-              href="#"
-              className="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center hover:bg-slate-700 transition-colors text-white"
-            >
-              <Linkedin size={12} />
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  )
-}
-
 const MobileMenu = ({ isOpen }) => {
   if (!isOpen) return null
 
@@ -414,7 +320,6 @@ export default function FindProfessionals() {
         </div>
       </main>
 
-      <Footer />
       <ContactFooter />
     </div>
   )
