@@ -1,15 +1,21 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { MemoryRouter } from 'react-router-dom'
 import NewProfessionals from '../NewProfessionals'
 
-const renderPage = () => render(<NewProfessionals />)
+const renderPage = () =>
+  render(
+    <MemoryRouter>
+      <NewProfessionals />
+    </MemoryRouter>,
+  )
 
 describe('NewProfessionals', () => {
   it('shows the hero heading and description count', () => {
     renderPage()
 
-    expect(screen.getByText(/Find Professionals/i)).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Find Professionals/i })).toBeInTheDocument()
     expect(screen.getByText(/Discover Trusted Professionals/i)).toBeInTheDocument()
     expect(screen.getByText(/Found 6 professionals/i)).toBeInTheDocument()
   })
