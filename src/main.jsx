@@ -1,21 +1,19 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import App from './App'
 import ExploreIdeas from './components/ExploreIdeas'
 import AskExperts from './components/AskExperts'
-
-import NewProfessionals from './components/NewProfessionals'
+import FindProfessionals from './components/FindProfessionals'
 import './index.css'
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Router basename={import.meta.env.BASE_URL}>
+    <Router>
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/explore" element={<ExploreIdeas />} />
-        <Route path="/new-professionals" element={<NewProfessionals />} />
-        <Route path="/new-professionals/*" element={<NewProfessionals />} />
+        <Route path="/find-professionals" element={<FindProfessionals />} />
         <Route path="/ask-experts" element={<AskExperts />} />
       </Routes>
     </Router>
