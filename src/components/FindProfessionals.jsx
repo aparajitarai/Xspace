@@ -287,13 +287,13 @@ const StickyNavbar = () => {
   return (
     <nav className="bg-[#050B1B] text-white py-4 px-6 sticky top-0 z-50 shadow-md">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <div className="flex items-center gap-2 cursor-pointer">
+        <Link to="/" className="flex items-center gap-2 cursor-pointer">
           <div className="relative">
             <span className="absolute -inset-1 rounded-full blur-[2px] bg-white/20"></span>
             <Star className="text-white relative z-10" size={20} />
           </div>
           <span className="font-serif text-xl font-bold tracking-wide">XSpace</span>
-        </div>
+        </Link>
 
           <div className="hidden md:flex items-center space-x-8 text-sm font-light tracking-wide text-gray-300">
             <Link to="/explore" className="hover:text-white transition-colors">
