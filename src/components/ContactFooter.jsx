@@ -75,7 +75,7 @@ const ContactFooter = () => {
               <Link to="/explore" className="hover:text-white transition-colors">
                 Explore Ideas
               </Link>
-              <Link to="/new-professionals" className="hover:text-white transition-colors">
+              <Link to="/find-professionals" className="hover:text-white transition-colors">
                 Find Professionals
               </Link>
               <Link to="/ask-experts" className="hover:text-white transition-colors">

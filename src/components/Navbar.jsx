@@ -23,7 +23,7 @@ const Navbar = () => {
         <Link to="/explore" className="hover:text-amber-200 transition-colors">
           Explore Ideas
         </Link>
-        <Link to="/new-professionals" className="hover:text-amber-200 transition-colors">
+        <Link to="/find-professionals" className="hover:text-amber-200 transition-colors">
           Find Professionals
         </Link>
         <Link to="/ask-experts" className="hover:text-amber-200 transition-colors">
