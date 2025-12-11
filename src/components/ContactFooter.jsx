@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import StarIcon from './StarIcon'
 
 const ContactFooter = () => {
@@ -71,9 +72,15 @@ const ContactFooter = () => {
             </div>
 
             <div className="flex gap-8 text-sm text-slate-400">
-              <a href="#" className="hover:text-white transition-colors">Explore Ideas</a>
-              <a href="#" className="hover:text-white transition-colors">Find Professionals</a>
-              <a href="#" className="hover:text-white transition-colors">Ask Experts</a>
+              <Link to="/explore" className="hover:text-white transition-colors">
+                Explore Ideas
+              </Link>
+              <Link to="/new-professionals" className="hover:text-white transition-colors">
+                Find Professionals
+              </Link>
+              <Link to="/ask-experts" className="hover:text-white transition-colors">
+                Ask Experts
+              </Link>
             </div>
 
             <div className="text-slate-500 text-xs">
